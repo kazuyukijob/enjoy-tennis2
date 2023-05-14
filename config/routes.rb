@@ -7,14 +7,14 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "home/about"=> 'homes#about'
     resources :users, only: [:show, :edit, :update, :index]
-    resources :reviews, only: [:new, :show, :edit, :index, :create]
-    #resources :tennis_courts, only: [:show, :edit, :update, :index]
+    resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy, :index]
+    resources :tennis_courts, only: [:show, :edit, :index]
   end
 
   # 管理者用
   namespace :admin do
     root to: 'homes#top'
-    resources :tennis_courts, only: [:new, :show, :edit, :index, :create, :update]
+    resources :tennis_courts, only: [:new, :show, :edit, :index, :create, :update, :destroy]
     resources :users, only: [:new, :show, :edit, :index, :create]
   end
 

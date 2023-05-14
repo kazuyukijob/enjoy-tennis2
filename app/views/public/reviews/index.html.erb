@@ -1,11 +1,10 @@
-<h1>review_index</h1>
+<h1>レビュー一覧</h1>
 
 <% @reviews.each do |review| %>
-<p>image</p>
-<span><%= review.image %></span>
-<p>title</p>
-<span><%= review.review_title %></span>
-<p>body</p>
-<span><%= review.review_body %></span>
-
+  <p>レビュー画像</p>
+    <%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %>
+  <p>レビュータイトル</p>
+    <%= review.review_title %>
+  <p>レビュー文</p>
+    <%= review.review_body %>
 <% end %>

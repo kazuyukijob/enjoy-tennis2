@@ -1,5 +1,8 @@
 <h1>ユーザー編集</h1>
  <%= form_with model: @user do |f| %>
+ 
+  <br>image</br>
+  <br> <%= f.file_field :profile_image, accept: "image/*" %></br>
   <br>性</br>
   <%= f.text_field :family_name %>
 
@@ -9,8 +12,6 @@
   <br>ニックネーム</br>
   <%= f.text_field :nickname %>
 
-  <h4>image</h4>
-  <h4>  <%= f.file_field :profile_image, accept: "image/*" %></h4>
 
    <%= f.submit %>
    <%end%>

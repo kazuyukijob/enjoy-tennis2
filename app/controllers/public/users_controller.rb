@@ -1,26 +1,36 @@
 class Public::UsersController < ApplicationController
+   before_action :ensure_current_user, {only: [:edit, :update]}
   def show
-    @user = current_user
+    #@user = current_user
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user = current_user
+    #@user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = user
-  if @user.update(user_params)
-    flash[:success] = "登録情報を変更しました"
-    redirect_to users_path
-  else
-     render :edit #and return
+    @user = current_user
+    if @user.update(user_params)
+      flash[:success] = "登録情報を変更しました"
+      redirect_to user_path
+    else
+       render :edit #and return
+    end
   end
 
-    private
+  private
 
 	def user_params
   	params.require(:user).permit(:email, :family_name, :personal_name,:nickname)
   end
 
+  def ensure_current_user
+    if current_user.id != params[:id].to_i
+      flash[:notice] = "Welcome! You have signed up successfully."
+      redirect_to user_path(current_user.id)
+    end
   end
+
 end

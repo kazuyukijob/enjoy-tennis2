@@ -1,7 +1,31 @@
  <h3>会員情報</h3>
-            <br>氏名</br>
-            <br><%= @user.family_name %> <%= @user.personal_name %></br>
-            <br>ニックネーム</br>
-            <br><%= @user.nickname %></br>
-            <br>メールアドレス</br>
-            <br><%= @user.email %></br>
+ <br>image</br>
+ <% if @user.profile_image.attached? %>
+ <br> <%= f.file_field :profile_image, accept: "image/*" %></br>
+  <% else  %>
+  <%= image_tag 'no_image.jpg', size: '100x100' %>
+   <% end %>
+  <br>性</br>
+  <%= @user.family_name %>
+
+  <br>名</br>
+  <%= @user.personal_name %>
+
+ <br>ニックネーム</br>
+ <%= @user.nickname %>
+
+ <br>メールアドレス</br>
+ <%= @user.email %>
+
+ <br> <%= link_to "編集", edit_user_path(@user.id) %>
+
+
+<% @user.reviews.each do |review| %>
+<p>レビュー画像</p>
+<%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %>
+<p>レビュータイトル</p>
+<span><%= review.review_title %></span>
+<p>レビュー文</p>
+<span><%= review.review_body %></span>
+
+<% end %>

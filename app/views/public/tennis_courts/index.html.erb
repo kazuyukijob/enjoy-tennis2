@@ -1,1 +1,13 @@
 <h1>ユーザーテニスコート一覧</h1>
+
+<% @tennis_courts.each do |tennis_court| %>
+  <p>画像</p>
+    <%= image_tag(tennis_court.image.attached? ? tennis_court.image : asset_url('no_image.jpg'), size: '100x100') %>
+  <p>施設名</p>
+    <%= tennis_court.name %>
+  <p>施設情報</p>
+    <%= tennis_court.explanation %>
+  <p>レビュー件数：<%= tennis_court.reviews.count %></p>
+  <p> <%= link_to "レビューする", new_review_path(tennis_court) %></p><!--new_review_pathにtennis_courtに格納された情報を持っていく-->
+  <p> <%= link_to "レビュー一覧", reviews_path(tennis_court) %></p>
+<% end %>

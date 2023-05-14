@@ -1,0 +1,12 @@
+<h1>show</h1>
+
+<% @reviews.each do |review| %>
+    <p>image</p>
+        <%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %>
+    <p>title</p>
+        <%= review.review_title %>
+    <p>body</p>
+        <%= review.review_body %>
+    <p><%= link_to "編集", edit_review_path(review.id) %></p>
+    <p><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+<% end %><!--eachの格納されてるやつやからreview 最初@reciewにしてた--!>

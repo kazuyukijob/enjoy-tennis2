@@ -26,6 +26,12 @@ class Admin::TennisCourtsController < ApplicationController
     end
   end
 
+  def destroy
+    @tennis_court = TennisCourt.find(params[:id])  # データ（レコード）を1件取得
+    @tennis_court.destroy  # データ（レコード）を削除@reviewを消去
+    redirect_to admin_tennis_courts_path(@tennis_court.id)  # 投稿一覧画面へリダイレクト
+  end
+
     private
   # ストロングパラメータ
   def tennis_court_params

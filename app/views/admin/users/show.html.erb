@@ -1,6 +1,13 @@
   <h1>ユーザー情報</h1>
-  <!--空でも表示させられる様にif使う-->
-  <p><%= @user.family_name %> <%= @user.personal_name %></p>
-      <p><%= @@user.nickname %></p>
-      <p><%= @user.email %></p>
+  <br>性</br>
+  <%= @user.family_name %>
+
+  <br>名</br>
+  <%= @user.personal_name %>
+
+ <br>ニックネーム</br>
+ <%= @user.nickname %>
+
+ <br>メールアドレス</br>
+ <%= @user.email %>
       <p><%#= link_to 'ユーザ情報変更', edit_admin_user_path(@user) %></p>
