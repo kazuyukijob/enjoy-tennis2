@@ -1,0 +1,14 @@
+ <% @tennis_courts.each do |tennis_court| %>
+    <h4>画像</h4>
+      <%#= image_tag tennis_court.get_image(100,100) %>
+      <% if tennis_court.image.attached? %>
+        <%= image_tag tennis_court.image, size: '100x100' %>
+      <% else  %>
+        <%= image_tag 'no_image.jpg', size: '100x100' %>
+      <% end %>
+    <h4>施設名</h4>
+      <%= tennis_court.name %>
+    <h4>施設情報</h4>
+      <%= tennis_court.explanation %>
+     <br> <%= link_to "編集", edit_admin_tennis_court_path(tennis_court.id) %>
+  <% end %>

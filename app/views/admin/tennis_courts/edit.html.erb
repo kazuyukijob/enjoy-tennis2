@@ -1,0 +1,13 @@
+<h1>施設登録編集</h1>
+<!-- form_with部分 -->
+<%= form_with model: @tennis_court,url: admin_tennis_court_path do |f| %>
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h4>施設名</h4>
+  <%= f.text_field :name %>
+
+  <h4>施設情報</h4>
+  <%= f.text_area :explanation %>
+
+  <%= f.submit '編集' %>
+<% end %>

@@ -1,0 +1,5 @@
+ <% @users.each do |user| %>
+ <br><%= user.family_name %> <%= user.personal_name %></br>
+ <br><%= user.nickname %></br>
+ <br><%= link_to 'ユーザ詳細', admin_user_path(user) %></br>
+ <% end %>

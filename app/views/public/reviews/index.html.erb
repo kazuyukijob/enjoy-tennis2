@@ -1,0 +1,11 @@
+<h1>review_index</h1>
+
+<% @reviews.each do |review| %>
+<p>image</p>
+<span><%= review.image %></span>
+<p>title</p>
+<span><%= review.review_title %></span>
+<p>body</p>
+<span><%= review.review_body %></span>
+
+<% end %>
