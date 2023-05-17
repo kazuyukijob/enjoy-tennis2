@@ -1,31 +1,42 @@
  <h3>会員情報</h3>
- <br>image</br>
- <% if @user.profile_image.attached? %>
- <br> <%= f.file_field :profile_image, accept: "image/*" %></br>
-  <% else  %>
-  <%= image_tag 'no_image.jpg', size: '100x100' %>
-   <% end %>
-  <br>性</br>
-  <%= @user.family_name %>
 
-  <br>名</br>
-  <%= @user.personal_name %>
+ <table>
+   <thead>
+     <tr>
+       <th></th>
+       <th>名字</th>
+       <th>名前</th>
+       <th>ニックネーム</th>
+       <th>メールアドレス</th>
+     </tr>
+   </thead>
 
- <br>ニックネーム</br>
- <%= @user.nickname %>
+    <tbody>
+     <tr>
+        <td>
+         <% if @user.profile_image.attached? %>
+         <%= f.file_field :profile_image, accept: "image/*" %>
+         <% else  %>
+         <%= image_tag 'no_image.jpg', size: '100x100' %>
+         <% end %>
+         <%#= image_tag(user.image.attached? ? user.image : asset_url('no_image.jpg'), size: '100x100') %>
+        </td>
+       <td><%= @user.family_name %></td>
+       <td><%= @user.personal_name %></td>
+       <td><%= @user.nickname %></td>
+       <td><%= @user.email %></td>
+     </tr>
+   </tbody>
+</table>
 
- <br>メールアドレス</br>
- <%= @user.email %>
+<br> <%= link_to "ユーザー情報編集", edit_user_path(@user.id) %>
+<p><%= link_to "マイレビュー一覧", review_path %></p>
 
- <br> <%= link_to "編集", edit_user_path(@user.id) %>
-
-
-<% @user.reviews.each do |review| %>
-<p>レビュー画像</p>
-<%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %>
-<p>レビュータイトル</p>
-<span><%= review.review_title %></span>
-<p>レビュー文</p>
-<span><%= review.review_body %></span>
-
+<% if @user.nickname != "guestuser" %>
+<div class='row'>
+<%= link_to '',edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
+</div>
 <% end %>
+
+
+    <p><%= render "public/relationships/follow", @user %></p>

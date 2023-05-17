@@ -1,0 +1,31 @@
+
+<div>
+  <!--review/indexの部分テンプレートからreview_idを持ってきている-->
+  <%= form_with model: [review, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ニックネーム</th>
+      <th>コメント</th>
+      <th></th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <% review.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.nickname %></td>
+        <td><%= comment.comment %></td>
+          <% if comment.user == current_user %>
+          <td><%= link_to "削除", review_comment_path(review, comment), method: :delete %></td>
+          <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

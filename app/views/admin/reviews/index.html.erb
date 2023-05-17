@@ -1,7 +1,10 @@
 <h1>admin_review一覧</h1>
-<br><%= @user.family_name %> <%= @user.personal_name %></br>
-<br><%= @user.nickname %></br>
-<br>タイトル</br>
-<br><%= @review.review_title %></br>
-<br>内容</br>
-<br><%= @review.review_body%></br>
+<% @reviews.each do |review| %>
+    <p>image</p>
+        <%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %>
+    <p>title</p>
+        <%= review.review_title %>
+    <p>body</p>
+        <%= review.review_body %>
+    <p><%= link_to "削除", admin_review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+<% end %><!--eachの格納されてるやつやからreview 最初@reciewにしてた--!>

@@ -6,9 +6,24 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get "home/about"=> 'homes#about'
-    resources :users, only: [:show, :edit, :update, :index]
-    resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy, :index]
-    resources :tennis_courts, only: [:show, :edit, :index]
+    resources :users, only: [:show, :edit, :update, :index] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy] do
+      #いいねはレビューにネストする形で記載
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
+    resources :tennis_courts, only: [:show, :edit, :index] do
+      #コートidだけ引き継ぎたいからネストしてurlに混ぜる
+      resources :reviews, only: [:index]
+    end
+      #ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
+  end
   end
 
   # 管理者用
@@ -16,6 +31,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :tennis_courts, only: [:new, :show, :edit, :index, :create, :update, :destroy]
     resources :users, only: [:new, :show, :edit, :index, :create]
+      resources :reviews, only: [:index, :destroy]
   end
 
 # ユーザー
@@ -24,6 +40,7 @@ devise_for :user,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
+
 
 # 管理者用
 # URL /admin/sign_in ...

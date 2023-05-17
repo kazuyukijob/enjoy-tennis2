@@ -5,8 +5,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @tennis = TennisCourt.find(params[:format])
-    @reviews = @tennis.reviews
+    @tennis_court = TennisCourt.find(params[:tennis_court_id])
+    @reviews = @tennis_court.reviews
+    @comment = Comment.new
   end
 
   def show
