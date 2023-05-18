@@ -10,7 +10,7 @@ class CreateTennisCourts < ActiveRecord::Migration[6.1]
       #経度
       t.float :longitude
       #緯度
-      t.float :float
+      t.float :latitude
 
       t.timestamps
     end

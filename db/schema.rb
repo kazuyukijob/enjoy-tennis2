@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2023_05_16_045246) do
     t.text "explanation"
     t.string "address"
     t.float "longitude"
-    t.float "float"
+    t.float "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

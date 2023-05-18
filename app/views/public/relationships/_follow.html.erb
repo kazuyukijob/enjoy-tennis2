@@ -1,7 +1,7 @@
 <h1>Relationships#follow</h1>
 <p>Find me in app/views/public/relationships/follow.html.erb</p>
 
- if users.exists? %>
+ <% if @user.following?(review.user_id)? %>
   <% users.each do |user| %>
     <table>
       <thead>
