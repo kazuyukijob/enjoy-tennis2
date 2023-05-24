@@ -1,0 +1,24 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがtennis_courtの時 -->
+  <% if @range == "Tennis_court" %>
+    <tbody>
+      <% @tennis_courts.each do |tennis_court| %>
+        <tr>
+          <td><%= tennis_court.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがtennis_courtではない時(= 検索対象モデルがreviewの時) -->
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.review_title %></td>
+          <td><%= review.review_body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

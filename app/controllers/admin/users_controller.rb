@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @cuser = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit

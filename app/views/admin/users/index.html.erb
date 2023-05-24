@@ -1,5 +1,21 @@
- <% @users.each do |user| %>
- <br><%= user.family_name %> <%= user.personal_name %></br>
- <br><%= user.nickname %></br>
- <br><%= link_to 'ユーザ詳細', admin_user_path(user) %></br>
- <% end %>
+  <h3>管理者会員情報一覧</h3>
+
+ <table>
+   <thead>
+     <tr>
+       <th>名前</th>
+       <th>ニックネーム</th>
+       <th></th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <% @users.each do |user| %>
+       <tr>
+       <td><%= user.family_name %> <%= user.personal_name %></td>
+       <td><%= user.nickname %></td>
+       <td><%= link_to 'ユーザ詳細', admin_user_path(user_id) %></td>
+       </tr>
+     <% end %>
+   </tbody>
+ </thead>

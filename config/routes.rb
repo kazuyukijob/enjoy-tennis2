@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       #コートidだけ引き継ぎたいからネストしてurlに混ぜる
       resources :reviews, only: [:index]
     end
+    get "search" => "searches#search"
   end
 
   #ゲストログイン
@@ -32,7 +33,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :tennis_courts, only: [:new, :show, :edit, :index, :create, :update, :destroy]
     resources :users, only: [:new, :show, :edit, :index, :create]
-      resources :reviews, only: [:index, :destroy]
+    resources :reviews, only: [:index, :destroy]
+    resources :comments, only: [:index, :destroy]
   end
 
 # ユーザー

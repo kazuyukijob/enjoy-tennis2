@@ -8,4 +8,19 @@ class Review < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      reviews = self.where("review_title LIKE?","#{word}")
+    elsif search == "forward_match"
+      reviews = self.where("review_title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      reviews = self.where("review_title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      reviews = self.where("review_title LIKE?","%#{word}%")
+    else
+      reviews = self.all
+    end
+    reviews
+  end
 end

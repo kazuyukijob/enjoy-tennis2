@@ -1,0 +1,23 @@
+<h1>管理者コメント一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>ニックネーム</th>
+      <th>コメント</th>
+      <th></th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.family_name %><%= comment.user.personal_name %></td>
+        <td><%= comment.user.nickname %></td>
+        <td><%= comment.comment %></td>
+          <td><%= link_to "削除", admin_comment_path(comment), method: :delete %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
