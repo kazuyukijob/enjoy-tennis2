@@ -1,4 +1,4 @@
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=取得したAPIキー"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["GOOGLEMAP"] %>"></script>
  <% @tennis_courts.each do |tennis_court| %>
     <h4>画像</h4>
  <%= image_tag(tennis_court.image.attached? ? tennis_court.image : asset_url('no_image.jpg'), size: '100x100') %>

@@ -1,7 +1,6 @@
-<h1>Relationships#follow</h1>
-<p>Find me in app/views/public/relationships/follow.html.erb</p>
+<h1>フォローユーザー</h1>
 
- <% if @user.following?(review.user_id)? %>
+<% if users.exists? %>
   <% users.each do |user| %>
     <table>
       <thead>
@@ -9,11 +8,13 @@
           <th>name</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= user.name %></td>
+          <td><%= user.nickname %></td>
+          <td><%= link_to 'フォロー外す', user_relationships_path(user), method: :delete, class: "btn-sm btn-danger" %></td>
           <td>フォロー数: <%= user.followings.count %></td>
           <td>フォロワー数: <%= user.followers.count %></td>
         </tr>

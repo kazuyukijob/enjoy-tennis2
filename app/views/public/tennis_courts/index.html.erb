@@ -1,5 +1,7 @@
 <h1>テニスコート一覧</h1>
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["GOOGLEMAP"] %>"></script>
+
     <table>
       <br>
       <thead>
@@ -7,6 +9,8 @@
             <th></th>
             <th>施設名</th>
             <th>数施設情報</th>
+            <th>住所</th>
+            <th>地図</th>
             <th>レビュー件数</th>
             <th>レビューする</th>
             <th>レビュー一覧</th>
@@ -19,6 +23,8 @@
             <td><%= image_tag(tennis_court.image.attached? ? tennis_court.image : asset_url('no_image.jpg'), size: '100x100') %> </td>
             <td><%= tennis_court.name %></td>
             <td><%= tennis_court.explanation %></td>
+            <td><%= tennis_court.address %></td>
+             <td><%= render "admin/tennis_courts/map", tennis_court: tennis_court %></td>
             <td><%= tennis_court.reviews.count %> 件</td>
             <td><%= link_to "レビューする", new_review_path(tennis_court) %></td><!--new_review_pathにtennis_courtに格納された情報を持っていく-->
             <td><%= link_to "レビュー一覧", tennis_court_reviews_path(tennis_court) %></td>

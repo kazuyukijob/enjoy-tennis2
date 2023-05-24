@@ -16,7 +16,7 @@
         <td>
          <% if @user.profile_image.attached? %>
          <%= f.file_field :profile_image, accept: "image/*" %>
-         <% else  %>
+         <% else %>
          <%= image_tag 'no_image.jpg', size: '100x100' %>
          <% end %>
          <%#= image_tag(user.image.attached? ? user.image : asset_url('no_image.jpg'), size: '100x100') %>
@@ -29,14 +29,16 @@
    </tbody>
 </table>
 
-<br> <%= link_to "ユーザー情報編集", edit_user_path(@user.id) %>
-<p><%= link_to "マイレビュー一覧", review_path %></p>
-
-<% if @user.nickname != "guestuser" %>
-<div class='row'>
-<%= link_to '',edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
-</div>
+<% if current_user.nickname != "guestuser" %>
+   <div class='row'>
+    <%= link_to edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+    <i class="fas fa-user-cog"></i>ユーザー情報編集
+    <% end %>
+  </div>
 <% end %>
 
 
-    <td><%= render "public/relationships/follow", user: @user %></td>
+<p><%#= link_to "ユーザー情報編集", edit_user_path(@user.id) %></p>
+<p><%= link_to "マイレビュー一覧", review_path %></p>
+<p><%= render "public/relationships/follow", user: @user,users: @user.followings %></p>
+
