@@ -11,11 +11,14 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
+
+    get  "reviews/myreview/:user_id"  => "reviews#myreview", as: :myreview
     resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy] do
       #いいねはレビューにネストする形で記載
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+    get  "comments/mycomment/:user_id"  => "comments#mycomment", as: :mycomment
     resources :tennis_courts, only: [:show, :edit, :index] do
       #コートidだけ引き継ぎたいからネストしてurlに混ぜる
       resources :reviews, only: [:index]

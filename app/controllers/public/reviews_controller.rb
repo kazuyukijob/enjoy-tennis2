@@ -15,6 +15,11 @@ class Public::ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
+  def myreview
+    @reviews = Review.where(user_id: params[:user_id])
+    #@reviews = Review.all
+  end
+
   def edit
     @review = Review.find(params[:id])
   end

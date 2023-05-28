@@ -3,7 +3,9 @@
   <!--review/indexの部分テンプレートからreview_idを持ってきている-->
   <%= form_with model: [review, @comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <% if current_user.nickname != "guestuser" %>
     <%= f.submit "送信する" %>
+    <% end %>
   <% end %>
 </div>
 

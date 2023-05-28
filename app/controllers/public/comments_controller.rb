@@ -1,4 +1,9 @@
 class Public::CommentsController < ApplicationController
+
+ def mycomment
+  @comments = Comment.where(user_id: params[:user_id])
+ end
+
  def create
    review = Review.find(params[:review_id])
    comment = current_user.comments.new(comment_params)

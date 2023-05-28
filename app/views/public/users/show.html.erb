@@ -13,14 +13,7 @@
 
     <tbody>
      <tr>
-        <td>
-         <% if @user.profile_image.attached? %>
-         <%= f.file_field :profile_image, accept: "image/*" %>
-         <% else %>
-         <%= image_tag 'no_image.jpg', size: '100x100' %>
-         <% end %>
-         <%#= image_tag(user.image.attached? ? user.image : asset_url('no_image.jpg'), size: '100x100') %>
-        </td>
+       <td><%= image_tag(@user.profile_image.attached? ? @user.profile_image : asset_url('no_image.jpg'), size: '100x100') %></td>
        <td><%= @user.family_name %></td>
        <td><%= @user.personal_name %></td>
        <td><%= @user.nickname %></td>
@@ -31,14 +24,14 @@
 
 <% if current_user.nickname != "guestuser" %>
    <div class='row'>
-    <%= link_to edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+     <%= link_to edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
     <i class="fas fa-user-cog"></i>ユーザー情報編集
-    <% end %>
+     <% end %>
   </div>
 <% end %>
 
 
-<p><%#= link_to "ユーザー情報編集", edit_user_path(@user.id) %></p>
-<p><%= link_to "マイレビュー一覧", review_path %></p>
+<p><%= link_to "マイレビュー一覧", myreview_path(@user.id) %></p>
+<p><%= link_to "マイコメント一覧", mycomment_path(@user.id) %></p>
 <p><%= render "public/relationships/follow", user: @user,users: @user.followings %></p>
 

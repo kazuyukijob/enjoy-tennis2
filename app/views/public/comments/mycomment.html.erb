@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>ニックネーム</th>
+      <th>コメント</th>
+      <th></th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.nickname %></td>
+        <td><%= comment.comment %></td>
+          <td><%= link_to "削除", review_comment_path(comment.review, comment), method: :delete %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
