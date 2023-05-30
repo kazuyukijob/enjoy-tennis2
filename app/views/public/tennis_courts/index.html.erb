@@ -24,11 +24,20 @@
             <td><%= tennis_court.name %></td>
             <td><%= tennis_court.explanation %></td>
             <td><%= tennis_court.address %></td>
-             <td><%= render "admin/tennis_courts/map", tennis_court: tennis_court %></td>
+            <td><%= render "admin/tennis_courts/map", tennis_court: tennis_court %></td>
             <td><%= tennis_court.reviews.count %> 件</td>
-            <td><%= link_to "レビューする", new_review_path(tennis_court) %></td><!--new_review_pathにtennis_courtに格納された情報を持っていく-->
-            <td><%= link_to "レビューにコメントする", tennis_court_reviews_path(tennis_court) %></td>
+            <td>
+              <%= link_to new_review_path(tennis_court), class: "btn btn-primary rounded-circle" do %>
+                レビューする
+              <% end %>
+            </td><!--new_review_pathにtennis_courtに格納された情報を持っていく-->
+            <td>
+              <%= link_to tennis_court_reviews_path(tennis_court), class: "btn btn-primary rounded-circle" do %>
+                コメントする
+              <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>
     </table>
+

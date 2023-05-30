@@ -1,3 +1,35 @@
-<h1>admin_top</h1>
-<%= link_to "レビュー", admin_reviews_path %>
-<%= link_to "ユーザー", admin_users_path %>
+<h1>管理者画面</h1>
+
+ <div class="nav-item">
+    <%= link_to admin_users_path,class: "btn btn-outline-secondary btn-block " do %>
+      <i class="fas fa-user" style="color: #1f512b;"></i> ユーザー一覧
+    <% end %>
+</div>
+
+ <br>
+ <div class="nav-item">
+    <%= link_to admin_reviews_path,class: "btn btn-outline-secondary btn-block " do %>
+      <i class="fas fa-user" style="color: #1f512b;"></i> レビュー一覧
+    <% end %>
+</div>
+
+<br>
+ <div class="nav-item">
+    <%= link_to admin_comments_path,class: "btn btn-outline-secondary btn-block " do %>
+      <i class="fas fa-user" style="color: #1f512b;"></i> コメント一覧
+    <% end %>
+</div>
+
+<br>
+ <div class="nav-item">
+    <%= link_to new_admin_tennis_court_path,class: "btn btn-outline-secondary btn-block " do %>
+      <i class="fas fa-stop" style="color: #1f512b;"></i> テニスコート新規登録
+    <% end %>
+</div>
+
+<br>
+ <div class="nav-item">
+    <%= link_to admin_tennis_courts_path,class: "btn btn-outline-secondary btn-block " do %>
+      <i class="fas fa-stop" style="color: #1f512b;"></i> テニスコート一覧
+    <% end %>
+</div>

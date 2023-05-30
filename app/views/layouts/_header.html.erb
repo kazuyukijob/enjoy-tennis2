@@ -1,37 +1,39 @@
 <body>
   <header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
       <!--<div class="container">-->
-      <div class="yokonarabi">
+
 
               <!-- ヘッダ画像 -->
-        <a class="navbar-brand p-3" href="/"><%= image_tag( asset_path('enjoy tennis.png'),size: '100x100') %></a>
+        <a class="navbar-brand p-3" href="/"><%= image_tag( asset_path('enjoy tennis.png'),size: '150x150') %></a>
 
 
 
-      <div class="collapse navbar-collapse aikonyoko" id="navbarNavDropdown" >
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" >
         <ul class="navbar-nav ml-auto">
 
       <!--user側-->
         <% if user_signed_in? %>
-          <div class="nickname">
-              ようこそ、<%= current_user.nickname %>さん！
-              </div>
+
+          <div class="nickname" style="text-align: center;">
+              <span style="color: blck; font-size: 50px;">ようこそ、<%= current_user.nickname %>さん！</span>
+          </div>
+
           <li class="nav-item">
-            <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
+            <%= link_to user_path(current_user),class: "btn btn-outline-secondary btn-block " do %>
               <i class="fas fa-user" style="color: #1f512b;"></i> マイページ
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to tennis_courts_path,class: 'nav-link text-light' do %>
+            <%= link_to tennis_courts_path,class: "btn btn-outline-secondary btn-block " do %>
               <i class="fas fa-stop" style="color: #1f512b;"></i>コート一覧
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+            <%= link_to destroy_user_session_path, method: :delete,class: "btn btn-outline-secondary btn-block " do %>
               <i class="fas fa-sign-out-alt" style="color: #1f512b;"></i> ログアウト
             <% end %>
           </li>
@@ -40,31 +42,32 @@
         <% elsif admin_signed_in? %>
 
           <li class="nav-item">
-            <%= link_to admin_users_path,class: 'nav-link text-light' do %>
-              <i class="fab fa-product-hunt"></i> ユーザー一覧
+            <%= link_to admin_users_path,class: 'nav-link text-dark' do %>
+              <i class="fab fa-product-hunt"></i>ユーザー一覧
             <% end %>
           </li>
 
+
           <li class="nav-item">
-            <%= link_to admin_reviews_path,class: 'nav-link text-light' do %>
+            <%= link_to admin_reviews_path,class: 'nav-link text-dark' do %>
               <i class="fab fa-product-hunt"></i> レビュー一覧
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to new_admin_tennis_court_path,class: 'nav-link text-light' do %>
+            <%= link_to new_admin_tennis_court_path,class: 'nav-link text-dark' do %>
               <i class="fab fa-product-hunt"></i> 施設登録
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to admin_tennis_courts_path,class: 'nav-link text-light' do %>
+            <%= link_to admin_tennis_courts_path,class: 'nav-link text-dark' do %>
               <i class="fab fa-product-hunt"></i> 施設一覧
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
@@ -72,27 +75,27 @@
         <% else %>
 
           <li class="nav-item">
-            <%= link_to public_guest_sign_in_path, method: :post,class: 'nav-link text-light' do %>
-              <i class="fas fa-user"></i> ゲストログイン（閲覧用）
+            <%= link_to public_guest_sign_in_path, method: :post,class: "btn btn-outline-secondary btn-block " do %>
+              <i class="fas fa-user" style="color: #1f512b;"></i> ゲストログイン（閲覧用）
             <% end %>
           </li>
 
 
           <li class="nav-item">
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user"></i> 新規登録
+            <%= link_to new_user_registration_path,class: "btn btn-outline-secondary btn-block " do %>
+              <i class="fas fa-user" style="color: #1f512b;"></i> 新規登録
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to user_session_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user"></i> ログイン
+            <%= link_to user_session_path,class: "btn btn-outline-secondary btn-block " do %>
+              <i class="fas fa-user" style="color: #1f512b;"></i> ログイン
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to home_about_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> About
+            <%= link_to home_about_path ,class: "btn btn-outline-secondary btn-block " do %>
+              <i class="fas fa-link" style="color: #1f512b;"></i> About
             <% end %>
           </li>
 

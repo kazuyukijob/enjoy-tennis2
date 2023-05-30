@@ -1,13 +1,30 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["GOOGLEMAP"] %>"></script>
+
+
+ <table>
+   <thead>
+         <tr>
+           <th>画像</th>
+           <th>施設名</th>
+           <th>施設情報</th>
+           <th>住所</th>
+           <th>地図</th>
+           <th>編集</th>
+           <th>消去</th>
+         </tr>
+   </thead>
+
+    <tbody>
  <% @tennis_courts.each do |tennis_court| %>
-    <h4>画像</h4>
- <%= image_tag(tennis_court.image.attached? ? tennis_court.image : asset_url('no_image.jpg'), size: '100x100') %>
-    <h4>施設名</h4>
-      <%= tennis_court.name %>
-    <h4>施設情報</h4>
-      <%= tennis_court.explanation %>
-      <h4>地図</h4>
-      <%= render "admin/tennis_courts/map", tennis_court: tennis_court %>
-     <br> <%= link_to "編集", edit_admin_tennis_court_path(tennis_court.id) %>
-      <p><%= link_to "削除", admin_tennis_court_path(tennis_court.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+ <tr>
+ <td><%= image_tag(tennis_court.image.attached? ? tennis_court.image : asset_url('no_image.jpg'), size: '100x100') %>
+ <td><%= tennis_court.name %></td>
+ <td><%= tennis_court.explanation %></td>
+ <td><%= tennis_court.address %></td>
+ <td><%= render "admin/tennis_courts/map", tennis_court: tennis_court %></td>
+ <td><%= link_to "編集", edit_admin_tennis_court_path(tennis_court.id) %></td>
+ <td><%= link_to "削除", admin_tennis_court_path(tennis_court.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+ </tr>
   <% end %>
+</tbody>
+ </table>

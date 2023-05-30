@@ -1,37 +1,55 @@
- <h3>会員情報</h3>
+ <h3>ユーザー情報</h3>
 
- <table>
-   <thead>
-     <tr>
-       <th></th>
-       <th>名字</th>
-       <th>名前</th>
-       <th>ニックネーム</th>
-       <th>メールアドレス</th>
-     </tr>
-   </thead>
+ <div class="container">
+   <div class="row">
+     <div class="col">
+       <table>
+         <thead>
+           <tr>
+             <th></th>
+             <th>名字</th>
+             <th>名前</th>
+             <th>ニックネーム</th>
+             <th>メールアドレス</th>
+             <th></th>
+           </tr>
+         </thead>
 
-    <tbody>
-     <tr>
-       <td><%= image_tag(@user.profile_image.attached? ? @user.profile_image : asset_url('no_image.jpg'), size: '100x100') %></td>
-       <td><%= @user.family_name %></td>
-       <td><%= @user.personal_name %></td>
-       <td><%= @user.nickname %></td>
-       <td><%= @user.email %></td>
-     </tr>
-   </tbody>
-</table>
+          <tbody>
+           <tr>
+             <td><%= image_tag(@user.profile_image.attached? ? @user.profile_image : asset_url('no_image.jpg'), size: '100x100') %></td>
+             <td><%= @user.family_name %></td>
+             <td><%= @user.personal_name %></td>
+             <td><%= @user.nickname %></td>
+             <td><%= @user.email %></td>
+             <% if current_user.nickname != "guestuser" %>
+                 <%#= link_to edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}",  do %>
+                <td><%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary edit_user", style: "font-size: smaller;" do %>
+                  <i class="fas fa-user-cog"></i>ユーザー情報編集
+                <% end %></td>
+             <% end %>
+           </tr>
+         </tbody>
+      </table>
 
-<% if current_user.nickname != "guestuser" %>
-   <div class='row'>
-     <%= link_to edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
-    <i class="fas fa-user-cog"></i>ユーザー情報編集
-     <% end %>
+
+
+      <div>
+        <%= link_to myreview_path(@user.id), class: "btn btn-primary rounded-circle" do %>
+          マイレビュー一覧
+        <% end %>
+      </div>
+
+      <div>
+        <%= link_to mycomment_path(@user.id), class: "btn btn-primary rounded-circle" do %>
+          マイコメント一覧
+        <% end %>
+      </div>
+     </div>
+
+      <div class="col">
+        <%= render "public/relationships/follow", user: @user,users: @user.followings %>
+      </div>
   </div>
-<% end %>
-
-
-<p><%= link_to "マイレビュー一覧", myreview_path(@user.id) %></p>
-<p><%= link_to "マイコメント一覧", mycomment_path(@user.id) %></p>
-<p><%= render "public/relationships/follow", user: @user,users: @user.followings %></p>
+</div>
 
