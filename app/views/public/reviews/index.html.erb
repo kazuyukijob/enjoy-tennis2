@@ -19,7 +19,7 @@
         <td><%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %></td>
         <td><%= review.user.family_name %></td>
         <td><%= review.review_title %></td>
-        <td><%= review.review_body %></td>
+        <td><%= review.review_body %><span class="sentiment-score">本文の感情分析スコア<%= review.score %></span></td>
         <td><%= render "public/favorites/favorite", review: review %></td>
         <td><%= review.comments.count %> 件</td>
         <% if review.user_id != current_user.id %>

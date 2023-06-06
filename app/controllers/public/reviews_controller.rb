@@ -26,8 +26,8 @@ class Public::ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.score = Language.get_data(review_params[:review_body])  #この行を追加
     @review.user_id = current_user.id
-    # byebug
     if  @review.save
       #セーブされた時点ではid発行されてないので投稿内容からfindしてidを取得（タイトル、本文、画像どれか一つ探す）
       review = Review.find_by(review_title: @review.review_title)
