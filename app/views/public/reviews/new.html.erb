@@ -1,17 +1,24 @@
-<h1>新規投稿</h1>
-<!-- form_with部分 -->
-<%= form_with model: @review,url: reviews_path do |f| %>
-<!--一つだけ単体でパラメーターを渡したいときに使用する、今回はテニスコートid-->
- <%= f.hidden_field :tennis_court_id, :value => @tennis_court.id %>
-  <h4>レビュー画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>レビュータイトル</h4>
-  <%= f.text_field :review_title %>
-
-  <h4>レビュー本文</h4>
-  <%= f.text_area :review_body %>
-
-<% if current_user.nickname != "guestuser" %>
-  <%= f.submit 'レビューする' %>
-  <% end %>
-<% end %>
+<body>
+  <div style="border: 10px outset #31A9EE; padding: 10px; max-width: 400px;">
+  
+     <h1>新規投稿</h1>
+  
+    <!-- form_with部分 -->
+    <%= form_with model: @review,url: reviews_path do |f| %>
+      <!--一つだけ単体でパラメーターを渡したいときに使用する、今回はテニスコートid-->
+      <%= f.hidden_field :tennis_court_id, :value => @tennis_court.id %>
+      <h4>レビュー画像</h4>
+        <%= f.file_field :image, accept: "image/*" %>
+  
+      <h4>レビュータイトル</h4>
+        <%= f.text_field :review_title %>
+  
+      <h4>レビュー本文</h4>
+        <%= f.text_area :review_body %>
+  
+      <% if current_user.nickname != "guestuser" %>
+        <br><%= f.submit 'レビューする' %>
+      <% end %>
+    <% end %>
+  </div>
+</body>

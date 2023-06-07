@@ -16,7 +16,7 @@
          <tr>
            <td><%= image_tag(review.image.attached? ? review.image : asset_url('no_image.jpg'), size: '100x100') %></td>
            <td><%= review.review_title %></td>
-           <td><%= review.review_body %><p class="sentiment-score">本文の感情分析スコア[<%= review.score %>]</p></td>
+           <td><%= review.review_body %><br><p class="sentiment-score">本文の感情分析スコア[<%= review.score %>]</p></td>
            <% if review.user_id == current_user.id %>
            <td><%= link_to "編集", edit_review_path(review.id) %></td>
            <td><%= link_to "消去", review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
