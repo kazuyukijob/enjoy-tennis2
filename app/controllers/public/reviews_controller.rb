@@ -29,10 +29,7 @@ class Public::ReviewsController < ApplicationController
     @review.score = Language.get_data(review_params[:review_body])  #この行を追加
     @review.user_id = current_user.id
     if  @review.save
-      #セーブされた時点ではid発行されてないので投稿内容からfindしてidを取得（タイトル、本文、画像どれか一つ探す）
-      review = Review.find_by(review_title: @review.review_title)
-      #取得したidからshow画面へ遷移
-      redirect_to review_path(review)
+      redirect_to tennis_court_reviews_path(params[:review][:tennis_court_id].to_i)
     else
       render :new
     end
