@@ -5,6 +5,7 @@
     <table>
       <thead>
         <tr>
+          <th></th>
           <th>ニックネーム</th>
           <th></th>
           <th></th>
@@ -13,6 +14,7 @@
       </thead>
       <tbody>
         <tr>
+          <td><%= image_tag(@user.profile_image.attached? ? @user.profile_image : asset_url('no_image.jpg'), size: '100x100') %></td>
           <td><%= user.nickname %></td>
           <td><%= link_to 'フォロー外す', user_relationships_path(user), method: :delete, class: "btn-sm btn-danger" %></td>
           <td>フォロー数: <%= user.followings.count %></td>
