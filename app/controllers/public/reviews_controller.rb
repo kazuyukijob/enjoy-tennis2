@@ -48,7 +48,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])  # データ（レコード）を1件取得
     @review.destroy  # データ（レコード）を削除@reviewを消去
-    redirect_to review_path(@review.id)  # 投稿一覧画面へリダイレクト
+    redirect_to tennis_court_reviews_path(@review.tennis_court_id)  # 投稿一覧画面へリダイレクト
   end
 
     private
