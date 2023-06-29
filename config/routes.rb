@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
 
     get  "reviews/myreview/:user_id"  => "reviews#myreview", as: :myreview
-    resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy] do
+    resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy, :index] do
       #いいねはレビューにネストする形で記載
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get  "comments/mycomment/:user_id"  => "comments#mycomment", as: :mycomment
     resources :tennis_courts, only: [:show, :edit, :index] do
       #コートidだけ引き継ぎたいからネストしてurlに混ぜる
-      resources :reviews, only: [:index]
+      resources :reviews, only: [:index, :update]
     end
     get "search" => "searches#search"
   end

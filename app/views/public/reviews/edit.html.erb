@@ -1,6 +1,6 @@
 <h1>レビューを編集</h1>
 <!-- form_with部分 -->
-<%= form_with model: @review do |f| %>
+<%= form_with model: @review,url:  tennis_court_review_path(@review) do |f| %>
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
   <h4>施設名</h4>

@@ -39,7 +39,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update(review_params)
       flash[:notice] = "successfully"
-      redirect_to review_path(@review.id)
+      redirect_to tennis_court_reviews_path(@review.tennis_court)
     else
       render :edit
     end
